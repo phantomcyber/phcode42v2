@@ -8,16 +8,16 @@ clean::
 	rm -f ../phcode42v2.tgz
 
 test::
-	pytest -vv
+	$$(pyenv which pytest) -vv
 
 validate::
-	python ./build-scripts/compile_app.pyc -c
+	$$(pyenv which python) ./build-scripts/compile_app.pyc -c
 
 style::
-	pre-commit run --all-files --show-diff-on-failure
+	$$(pyenv which pre-commit) run --all-files --show-diff-on-failure
 
 tar:: clean
-	python ./build-scripts/compile_app.pyc -t
+	$$(pyenv which python) ./build-scripts/compile_app.pyc -t
 
 deploy:: tar
 	scp ../phcode42v2.tgz "phantom@${PHANTOM_VM_IP_ADDR}":/home/phantom
